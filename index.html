@@ -1,144 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Oakvale RPG</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #111827;
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
+<title>Kingdom of Oakvale</title>
 
-        .panel {
-            background: #1f2937;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 10px auto;
-            max-width: 500px;
-        }
+style.css
 
-        button {
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        .attack {
-            background: crimson;
-            color: white;
-        }
-
-        .rest {
-            background: green;
-            color: white;
-        }
-
-        .quest {
-            background: orange;
-            color: white;
-        }
-    </style>
 </head>
 
 <body>
 
-<h1>⚔ Kingdom of Oakvale</h1>
+<div id="game">
 
-<div class="panel">
-    <h2>Hero</h2>
-    <p id="hp">HP: 100</p>
-    <p id="gold">Gold: 20</p>
-    <p id="xp">XP: 0</p>
-</div>
+    <header>
 
-<div class="panel">
-    <h2>Wolf</h2>
-    <p id="enemy">HP: 30</p>
-</div>
+        <h1>⚔ KINGDOM OF OAKVALE ⚔</h1>
 
-<button class="quest" onclick="acceptQuest()">
-    Talk To Elder
-</button>
+        <p>Fantasy RPG Adventure</p>
 
-<button class="attack" onclick="attackWolf()">
-    Attack Wolf
-</button>
+    </header>
 
-<button class="rest" onclick="rest()">
-    Rest
-</button>
+    <div class="top-row">
 
-<div class="panel">
-    <h3>Dialogue</h3>
-    <p id="dialogue">
+        <div class="card">
+
+            <h2>🧙 Hero</h2>
+
+            <p id="levelText">Level 1</p>
+
+            <label>Health</label>
+
+            <div class="bar">
+                <div id="hpBar"></div>
+            </div>
+
+            <label>Experience</label>
+
+            <div class="bar xp">
+                <div id="xpBar"></div>
+            </div>
+
+            <p id="goldText">
+                🪙 Gold: 20
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2 id="enemyName">
+                🐺 Wolf
+            </h2>
+
+            <div class="sprite">
+                🐺
+            </div>
+
+            <div class="bar enemy">
+                <div id="enemyHp"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="buttons">
+
+        <button onclick="attackEnemy()">
+            ⚔ Attack
+        </button>
+
+        <button onclick="restPlayer()">
+            ❤️ Rest
+        </button>
+
+        <button onclick="acceptQuest()">
+            📜 Quest
+        </button>
+
+    </div>
+
+    <div id="dialogue">
+
         Welcome to Oakvale.
-    </p>
+
+    </div>
+
+    <div id="log">
+
+    </div>
+
 </div>
 
-<script>
-
-let hp = 100;
-let gold = 20;
-let xp = 0;
-let wolfHp = 30;
-
-function updateUI() {
-
-    document.getElementById("hp").innerText =
-        "HP: " + hp;
-
-    document.getElementById("gold").innerText =
-        "Gold: " + gold;
-
-    document.getElementById("xp").innerText =
-        "XP: " + xp;
-
-    document.getElementById("enemy").innerText =
-        "HP: " + wolfHp;
-}
-
-function acceptQuest() {
-
-    document.getElementById("dialogue").innerText =
-        "Defeat 3 wolves and return.";
-}
-
-function attackWolf() {
-
-    wolfHp -= 10;
-
-    if (wolfHp <= 0) {
-
-        wolfHp = 30;
-
-        xp += 25;
-        gold += 15;
-
-        document.getElementById("dialogue").innerText =
-            "Wolf defeated!";
-    }
-
-    updateUI();
-}
-
-function rest() {
-
-    hp = 100;
-
-    document.getElementById("dialogue").innerText =
-        "You rested.";
-        
-    updateUI();
-}
-
-updateUI();
-
-</script>
+game.jsscript>
 
 </body>
 </html>
