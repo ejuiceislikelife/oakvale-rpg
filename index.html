@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Oakvale RPG</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .panel {
+            background: #1f2937;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 10px auto;
+            max-width: 500px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .attack {
+            background: crimson;
+            color: white;
+        }
+
+        .rest {
+            background: green;
+            color: white;
+        }
+
+        .quest {
+            background: orange;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>⚔ Kingdom of Oakvale</h1>
+
+<div class="panel">
+    <h2>Hero</h2>
+    <p id="hp">HP: 100</p>
+    <p id="gold">Gold: 20</p>
+    <p id="xp">XP: 0</p>
+</div>
+
+<div class="panel">
+    <h2>Wolf</h2>
+    <p id="enemy">HP: 30</p>
+</div>
+
+<button class="quest" onclick="acceptQuest()">
+    Talk To Elder
+</button>
+
+<button class="attack" onclick="attackWolf()">
+    Attack Wolf
+</button>
+
+<button class="rest" onclick="rest()">
+    Rest
+</button>
+
+<div class="panel">
+    <h3>Dialogue</h3>
+    <p id="dialogue">
+        Welcome to Oakvale.
+    </p>
+</div>
+
+<script>
+
+let hp = 100;
+let gold = 20;
+let xp = 0;
+let wolfHp = 30;
+
+function updateUI() {
+
+    document.getElementById("hp").innerText =
+        "HP: " + hp;
+
+    document.getElementById("gold").innerText =
+        "Gold: " + gold;
+
+    document.getElementById("xp").innerText =
+        "XP: " + xp;
+
+    document.getElementById("enemy").innerText =
+        "HP: " + wolfHp;
+}
+
+function acceptQuest() {
+
+    document.getElementById("dialogue").innerText =
+        "Defeat 3 wolves and return.";
+}
+
+function attackWolf() {
+
+    wolfHp -= 10;
+
+    if (wolfHp <= 0) {
+
+        wolfHp = 30;
+
+        xp += 25;
+        gold += 15;
+
+        document.getElementById("dialogue").innerText =
+            "Wolf defeated!";
+    }
+
+    updateUI();
+}
+
+function rest() {
+
+    hp = 100;
+
+    document.getElementById("dialogue").innerText =
+        "You rested.";
+        
+    updateUI();
+}
+
+updateUI();
+
+</script>
+
+</body>
+</html>
